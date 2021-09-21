@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<nav th:replace="partials :: navbar">
+</nav>
+<p>Your random number is <span th:text="${num}"></span></p>
+
+<th:block th:if="${num % 2 == 0}" >
+    <p>Your number is even.</p>
+</th:block>
+<th:block th:if="${!(num % 2 == 0)}" >
+    <p>Your number is odd.</p>
+</th:block>
+
+</body>
+</html>
