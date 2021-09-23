@@ -1,33 +1,50 @@
 package com.codeup.springblog.controllers;
 
-import org.apache.coyote.Request;
+import com.codeup.springblog.models.Post;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Controller
 public class PostController {
 
-    @RequestMapping(path = "/posts", method = RequestMethod.GET)
-    @ResponseBody
-    public String index() {
-        return "posts index page";
+    @GetMapping("/posts")
+    public String showPosts(Model model) {
+        List<Post> allPosts = new ArrayList<>();
+
+        allPosts.add(new Post("post!", "post1 body"));
+        allPosts.add(new Post("post@", "post2 body"));
+
+        model.addAttribute("posts", allPosts);
+        return "post/index";
     }
 
-    @RequestMapping(path = "/posts/{id}", method = RequestMethod.GET)
-    @ResponseBody
-    public String viewPost(@PathVariable int id) {
-        return "view an individual post";
+    @GetMapping("/posts/{id}")
+    public String showOnePost(@PathVariable int id, Model model) {
+
+        Post post = new Post("Fun title", "Fun body");
+        model.addAttribute("postId", id);
+        model.addAttribute("post", post);
+
+        return "post/show";
     }
 
-    @RequestMapping(path = "/posts/create", method = RequestMethod.GET)
+    @GetMapping("/posts/create")
     @ResponseBody
-    public String createForm() {
-        return "view the form for creating a post";
+    public String showCreatePostForm() {
+        return "view form for creating a new post";
     }
 
-    @RequestMapping(path = "/posts/create", method = RequestMethod.POST)
+    @PostMapping("/posts/create")
     @ResponseBody
     public String createPost() {
         return "create a new post";
     }
+
 }

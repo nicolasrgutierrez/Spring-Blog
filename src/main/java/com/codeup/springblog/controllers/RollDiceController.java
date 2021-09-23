@@ -12,19 +12,17 @@ public class RollDiceController {
 
     @GetMapping("/roll-dice")
     public String rollDice(Model model) {
-        return "rolldice";
+        return "roll-dice";
     }
+
     @GetMapping("/roll-dice/{num}")
-    public String rollDiceResponse(@PathVariable int num, Model model) {
+    public String rollDiceGuess(@PathVariable int num, Model model) {
         model.addAttribute("number", num);
         Random random = new Random();
-        int randomNum = random.nextInt(6 - 1 + 1) + 1;
-        model.addAttribute("correct", randomNum);
-        if (randomNum == num) {
-            model.addAttribute("goodguess");
-        } else {
-            model.addAttribute("badguess");
-        }
-        return "roll_dice_guess";
+        int randomNum = random.nextInt((6 - 1) + 1) + 1;
+        model.addAttribute("diceRoll", randomNum);
+        model.addAttribute("userGuess", num);
+        model.addAttribute("isCorrect", randomNum == num);
+        return "roll-dice";
     }
 }
