@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="partials/head :: head('Adlister | All Ads')">
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<nav th:replace="partials/navbar :: navbar"></nav>
+
+<h2>Viewing All Posts</h2>
+
+<div th:each="ad : ${ads}">
+    <h3 th:text="${ad.title}">Title</h3>
+    <div th:text="${ad.description}"></div>
+</div>
+</body>
+</html>

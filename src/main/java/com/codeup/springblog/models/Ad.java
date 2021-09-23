@@ -1,10 +1,11 @@
 package com.codeup.springblog.models;
 
-import org.springframework.web.servlet.tags.form.TextareaTag;
+import org.springframework.stereotype.Controller;
 
 import javax.persistence.*;
 
 @Entity
+@Table(name = "ads")
 public class Ad {
 
     @Id
