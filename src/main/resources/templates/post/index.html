@@ -9,9 +9,9 @@
 
 <h2>Viewing All Posts</h2>
 
-<div th:each="post : ${posts}">
-    <h3 th:text="${post.title}">Title</h3>
-    <div th:text="${post.body}"></div>
-</div>
+    <div th:each="post : ${posts}">
+        <h2 th:text="${post.title}"></h2>
+        <h3 th:text="${post.body}"></h3>
+    </div>
 </body>
 </html>

@@ -1,5 +1,7 @@
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+
 <nav th:fragment="navbar" style="background-color: aliceblue">
     <h1>Spring Blog</h1>
+    <a class="nav-link" href="/posts"><h2>View All Posts</h2></a>
+    <a class="nav-link" href="/posts/create"><h2>Create A Post</h2></a>
 </nav>
-</html>
