@@ -8,8 +8,16 @@
 <nav th:replace="partials/navbar :: navbar"></nav>
 
 <div>
+
+  <div th:text="${post.id}"></div>
   <div th:text="${post.title}"></div>
   <div th:text="${post.body}"></div>
+  <a th:href="@{|/posts/edit/${post.id}|}" th:method="post"></a>
+
+  <form th:action="@{|/posts/edit/${post.id}|}" th:method="post">
+    <button type="submit">Delete</button>
+  </form>
+
 </div>
 </body>
 </html>

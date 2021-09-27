@@ -24,6 +24,11 @@ public class Post {
         this.body = body;
     }
 
+    public Post(Long id, String title, String body) {
+        this.id = id;
+        this.title = title;
+        this.body = body;
+    }
 
     public Long getId() {
         return id;
