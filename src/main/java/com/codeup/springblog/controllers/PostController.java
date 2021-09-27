@@ -2,6 +2,7 @@ package com.codeup.springblog.controllers;
 
 import com.codeup.springblog.models.Post;
 import com.codeup.springblog.repos.PostRepository;
+import com.codeup.springblog.repos.UserRepository;
 import org.apache.coyote.Request;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,9 +15,11 @@ import java.util.List;
 public class PostController {
 
     private final PostRepository postDao;
+    private final UserRepository userDao;
 
-    public PostController(PostRepository postDao) {
+    public PostController(PostRepository postDao, UserRepository userDao) {
         this.postDao = postDao;
+        this.userDao = userDao;
     }
 
     @RequestMapping(path = "/posts", method = RequestMethod.GET)
@@ -29,21 +32,30 @@ public class PostController {
     @RequestMapping(path = "/posts/{id}", method = RequestMethod.GET)
     public String viewPost(@PathVariable long id, Model model) {
         Post post = postDao.getById(id);
-        model.addAttribute("postId", id);
         model.addAttribute("post", post);
         return "post/show";
     }
 
-    @RequestMapping(path = "/posts/create", method = RequestMethod.GET)
-    public String createForm(Model model) {
-        return "post/create";
+    @GetMapping("/posts/create")
+    @ResponseBody
+    public String showCreatePostForm() {
+        return "view form for creating a new post";
+    }
+    @PostMapping("/posts/create")
+    @ResponseBody
+    public String createPost() {
+        return "create a new post";
     }
 
-    @RequestMapping(path = "/posts/create", method = RequestMethod.POST)
-    public String createPost(@PathVariable String title, @PathVariable String body, Model model) {
-        Post post = new Post(title, body);
+    @PostMapping("/posts/create")
+    public String createPostResponse(@RequestParam String title, @RequestParam String description) {
+        Post post = new Post(title, description);
+
+        post.setOwner(userDao.getById(1L));
+
         postDao.save(post);
-        return "post/index";
+
+        return "redirect:/posts";
     }
 
     @GetMapping("/posts/edit/{id}")
@@ -65,12 +77,12 @@ public class PostController {
         return "redirect:/posts";
     }
 
-//    @PostMapping("/posts/delete/{id}")
-//    public String deletePost(@PathVariable long id) {
-//        Post postToDelete = new Post(id);
-//        postDao.save(editedPost);
-//
-//        return "redirect:/posts";
-//    }
+    @PostMapping("/posts/delete/{id}")
+    public String deletePost(@PathVariable long id) {
+        Post postToDelete = postDao.getById(id);
+        postDao.delete(postToDelete);
+
+        return "redirect:/posts";
+    }
 
 }

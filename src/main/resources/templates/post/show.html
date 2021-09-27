@@ -9,14 +9,16 @@
 
 <div>
 
-  <div th:text="${post.id}"></div>
-  <div th:text="${post.title}"></div>
-  <div th:text="${post.body}"></div>
-  <a th:href="@{|/posts/edit/${post.id}|}" th:method="post"></a>
-
-  <form th:action="@{|/posts/edit/${post.id}|}" th:method="post">
+  <div th:text="${postId}">Id</div>
+  <div th:text="${post.title}">Title</div>
+  <div th:text="${post.body}">Body</div>
+  <a th:href="@{|/posts/edit/${postId}|}">Edit Post</a>
+  <form th:action="@{|/posts/delete/${postId}|}" th:method="post">
     <button type="submit">Delete</button>
   </form>
+  <!--    <form th:action="'/posts/' + 'delete/' + ${postId}" th:method="post">-->
+  <!--        <button type="submit">Delete</button>-->
+  <!--    </form>-->
 
 </div>
 </body>
