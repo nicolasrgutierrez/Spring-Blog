@@ -7,8 +7,8 @@
 <body>
 
 <form th:action="@{|/posts/edit/${post.id}|}" th:method="post" th:object="${post}">
-    <input type="text" th:field="*{title}" th:placeholder="${post.title}" />
-    <input th:field="*{body}" th:placeholder="${post.body}" />
+    <input type="text" th:field="*{post.title}" th:placeholder="${post.title}" />
+    <input th:field="*{post.body}" th:placeholder="${post.body}" />
     <button class="btn btn-success">Submit</button>
 </form>
 

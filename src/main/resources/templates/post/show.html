@@ -9,11 +9,10 @@
 
 <div>
 
-  <div th:text="${postId}">Id</div>
   <div th:text="${post.title}">Title</div>
   <div th:text="${post.body}">Body</div>
-  <a th:href="@{|/posts/edit/${postId}|}">Edit Post</a>
-  <form th:action="@{|/posts/delete/${postId}|}" th:method="post">
+  <div>Created By: <span th:text="${post.owner.email}"></span></div>
+  <form th:action="@{|/posts/delete/${post.id}|}" th:method="post">
     <button type="submit">Delete</button>
   </form>
   <!--    <form th:action="'/posts/' + 'delete/' + ${postId}" th:method="post">-->
