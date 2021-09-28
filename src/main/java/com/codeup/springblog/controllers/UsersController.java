@@ -14,31 +14,17 @@ public class UsersController {
     private UserRepository userDao;
 
     @GetMapping("/user/create")
-    public String createUserForm(){
+    public String createUserForm(Model model){
+        model.addAttribute("user", new User());
         return "user/create";
     }
 
-    @GetMapping("/user/{username}/posts")
-    public String showUserPosts(
-            @PathVariable String username,
-            Model model
-    ){
-        User userToDisplay = userDao.getByUsername(username);
-        model.addAttribute("user",userToDisplay);
-
-        return "user/displayAds";
-    }
 
     @PostMapping("/user/create")
     @ResponseBody
-    public String createUser(
-            @RequestParam(name = "uname") String username,
-            @RequestParam(name = "psw") String password
-    ){
-        System.out.println("Username " + username);
-        System.out.println("Password " + password);
-
-        return "User Created";
+    public String createUser(@ModelAttribute User user){
+        userDao.save(user);
+        return "redirect:/posts";
     }
 
     // Anything that has to do with users will go in here.
