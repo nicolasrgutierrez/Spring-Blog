@@ -57,19 +57,7 @@ public class PostController {
     }
 
     @PostMapping("/posts/edit/{id}")
-    public String editPost(
-            @PathVariable long id,
-            @RequestParam(name = "title") String title,
-            @RequestParam(name = "body") String body
-    ) {
-        // grab existing info on post
-        Post post = postDao.getById(id);
-
-        // update its contents
-        post.setTitle(title);
-        post.setBody(body);
-
-        //save updated post
+    public String editPost(@ModelAttribute Post post) {
         postDao.save(post);
 
         return "redirect:/posts";
