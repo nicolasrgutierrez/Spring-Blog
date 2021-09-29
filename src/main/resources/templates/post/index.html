@@ -1,9 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head th:replace="partials/head :: head('Spring Blog | All Posts')">
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
+<head th:replace="partials/header :: head('Spring Blog | Create New Post')"></head>
+
 <body>
 <nav th:replace="partials/navbar :: navbar"></nav>
 
@@ -14,5 +12,11 @@
         <h3 th:text="${post.body}"></h3>
         <p>Owner: <span th:text="${post.owner.username}"></span> </p>
     </div>
+
+
+
+
+
+<footer th:replace="partials/footer :: footer"></footer>
 </body>
 </html>

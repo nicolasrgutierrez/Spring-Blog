@@ -1,31 +1,24 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Create Post</title>
-  <div th:replace="Partials :: header"></div>
-</head>
+<head th:replace="partials/header :: head('Spring Blog | Create New Post')"></head>
+
 <body>
-<div th:replace="Partials :: navbar"></div>
+<div th:replace="partials/navbar :: navbar"></div>
 
 <h1>Create a new Post!</h1>
 
 <div class="container">
-  <form action="/post/create" method="post">
-    <div class="form-group">
-      <label for="title">Title</label>
-      <input class="form-control" id="title" type="text" name="title"/>
-    </div>
-    <div class="form-group">
-      <label for="body">Body</label>
-      <textarea class="form-control" id="body" name="body"></textarea>
-    </div>
+  <form th:action="@{/posts/create}" th:method="post" th:object="${post}"> >
+
+    <input type="text" th:field="*{title}" placeholder="title">
+    <input type="text" th:field="*{body}" placeholder="title">
+
     <button class="button">Submit</button>
   </form>
 </div>
 
 
-<div th:replace="Partials :: scripts"></div>
 
+<footer th:replace="partials/footer :: footer"></footer>
 </body>
 </html>

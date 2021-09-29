@@ -1,20 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Edit Post</title>
-</head>
+<head th:replace="partials/header :: head('Spring Blog | Create New Post')"></head>
+
 <body>
 
-<form th:action="@{|/posts/edit/${post.id}|}" th:method="post" th:object="${post}">
-    <input type="text" th:field="*{post.title}" th:placeholder="${post.title}" />
-    <input th:field="*{post.body}" th:placeholder="${post.body}" />
+<form th:action="@{|/posts/edit/${id}|}" th:method="post" th:object="${postToEdit}">
+
+    <input type="text" th:field="*{title}" th:placeholder="title">
+    <input type="text" th:field="*{body}" th:placeholder="body">
     <button class="btn btn-success">Submit</button>
+
 </form>
 
 <h1>Delete Post</h1>
 
-<form th:action="@{|/posts/delete/${post.id}|}" th:method="post">
+<form th:action="@{|/posts/delete/${id}|}" th:method="post">
     <button type="submit">Delete</button>
 </form>
 
