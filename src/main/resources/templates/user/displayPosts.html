@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<h1 th:text="${user.username}" ></h1>
+
+<div th:each="post : ${user.posts}">
+  <h3 th:text="${post.title}">Title</h3>
+  <div th:text="${post.body}"></div>
+</div>
+
+
+</body>
+</html>

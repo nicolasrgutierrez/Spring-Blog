@@ -1,11 +1,18 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head th:replace="partials/header :: head('Spring Blog | Create New Post')"></head>
 
 <body>
 <nav th:replace="partials/navbar :: navbar"></nav>
 
 <h2>Viewing All Posts</h2>
+
+<div sec:authorize="isAuthenticated()" >
+
+    <h3>Welcome, <span th:text="${#authentication.principal.username}"/>!</h3>
+
+</div>
 
     <div th:each="post:${posts}">
         <h2 th:text="${post.title}"></h2>

@@ -11,7 +11,7 @@
   <form th:action="@{/posts/create}" th:method="post" th:object="${post}"> >
 
     <input type="text" th:field="*{title}" placeholder="title">
-    <input type="text" th:field="*{body}" placeholder="title">
+    <input type="text" th:field="*{body}" placeholder="body">
 
     <button class="button">Submit</button>
   </form>
